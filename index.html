@@ -1,0 +1,140 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>كتب الرياضيات والموهبة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #f5f0e8;
+      --bg2: #dfe8f5;
+      --ink: #1f2a37;
+      --muted: #4b5563;
+      --accent: #1b6ca8;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Tajawal", "Cairo", "Noto Kufi Arabic", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 600px at 20% -10%, var(--bg2), transparent),
+                  linear-gradient(180deg, var(--bg1), #fff);
+    }
+    header {
+      padding: 48px 20px 24px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(24px, 4vw, 40px);
+      letter-spacing: 0.3px;
+    }
+    p.lead {
+      margin: 0 auto;
+      max-width: 640px;
+      color: var(--muted);
+      font-size: clamp(14px, 2.2vw, 18px);
+    }
+    main {
+      padding: 24px 16px 56px;
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(31, 42, 55, 0.08);
+      border: 1px solid rgba(27, 108, 168, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 200px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(27, 108, 168, 0.1);
+      color: var(--accent);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      width: fit-content;
+    }
+    .title {
+      font-size: 20px;
+      margin: 0;
+    }
+    .list {
+      margin: 0;
+      padding: 0 18px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .book-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .book-links a,
+    .book-links span {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(27, 108, 168, 0.15);
+      text-decoration: none;
+      color: var(--ink);
+      background: #f8fafc;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .book-links a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(31, 42, 55, 0.08);
+    }
+    .book-links span {
+      color: var(--muted);
+      border-style: dashed;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 10px 16px 32px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>كتب الرياضيات والموهبة للمرحلة المتوسطة</h1>
+    <p class="lead">اختر الصف المطلوب لمعرفة الكتب المتاحة للفصلين، بالإضافة إلى كتاب الموهبة.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <span class="badge">الصف الأول المتوسط</span>
+      <h2 class="title">كتب الرياضيات</h2>
+      <ul class="book-links">
+        <li><a href="book.html?file=Books/1%20MIDDLE/1M-Math-P1.pdf&label=الصف%20الأول%20المتوسط%20–%20رياضيات%20الفصل%20الأول">كتاب الرياضيات – الفصل الأول (P1)</a></li>
+        <li><a href="book.html?file=Books/1%20MIDDLE/1M-Math-P2.pdf&label=الصف%20الأول%20المتوسط%20–%20رياضيات%20الفصل%20الثاني">كتاب الرياضيات – الفصل الثاني (P2)</a></li>
+      </ul>
+      <h2 class="title">كتاب الموهبة</h2>
+      <ul class="book-links">
+        <li><a href="book.html?file=Books/1%20MIDDLE/Mawhiba/1M-Math-Mawhiba.pdf&label=الصف%20الأول%20المتوسط%20–%20كتاب%20الموهبة">كتاب الموهبة</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة — صفحة تعريفية بسيطة للكتب.
+  </footer>
+</body>
+</html>

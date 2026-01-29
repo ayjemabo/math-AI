@@ -1,0 +1,102 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>مشاركة الكتاب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #f5f0e8;
+      --bg2: #dfe8f5;
+      --ink: #1f2a37;
+      --muted: #4b5563;
+      --accent: #1b6ca8;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Tajawal", "Cairo", "Noto Kufi Arabic", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 600px at 20% -10%, var(--bg2), transparent),
+                  linear-gradient(180deg, var(--bg1), #fff);
+    }
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 16px 40px;
+      display: grid;
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(31, 42, 55, 0.08);
+      border: 1px solid rgba(27, 108, 168, 0.1);
+    }
+    .btn {
+      display: inline-block;
+      text-align: center;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(27, 108, 168, 0.2);
+      text-decoration: none;
+      color: #fff;
+      background: var(--accent);
+    }
+    .share-box {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(27, 108, 168, 0.2);
+      font-size: 14px;
+    }
+    .muted { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="card">
+      <h1>مشاركة الكتاب</h1>
+      <p class="muted" id="label">الكتاب: —</p>
+      <input id="shareLink" class="share-box" type="text" readonly />
+      <a id="copy" class="btn" href="#">نسخ الرابط</a>
+    </section>
+
+    <section class="card">
+      <a class="btn" href="index.html">العودة للرئيسية</a>
+    </section>
+  </main>
+
+  <script>
+    function getParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name) || "";
+    }
+
+    const file = getParam("file");
+    const label = getParam("label") || "كتاب";
+    const labelEl = document.getElementById("label");
+    const shareLink = document.getElementById("shareLink");
+    const copy = document.getElementById("copy");
+
+    const base = window.location.origin + window.location.pathname.replace(/share\.html$/, "book.html");
+    const url = file ? base + "?file=" + encodeURIComponent(file) + "&label=" + encodeURIComponent(label) : "";
+
+    labelEl.textContent = "الكتاب: " + label;
+    shareLink.value = url;
+
+    copy.addEventListener("click", function (e) {
+      e.preventDefault();
+      shareLink.select();
+      document.execCommand("copy");
+      copy.textContent = "تم النسخ";
+      setTimeout(function () { copy.textContent = "نسخ الرابط"; }, 1200);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>عرض الكتاب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #f5f0e8;
+      --bg2: #dfe8f5;
+      --ink: #1f2a37;
+      --muted: #4b5563;
+      --accent: #1b6ca8;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Tajawal", "Cairo", "Noto Kufi Arabic", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 600px at 20% -10%, var(--bg2), transparent),
+                  linear-gradient(180deg, var(--bg1), #fff);
+    }
+    header {
+      padding: 28px 18px 8px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(22px, 3.6vw, 34px);
+    }
+    .work {
+      display: inline-block;
+      background: rgba(27, 108, 168, 0.12);
+      color: var(--accent);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 12px 16px 40px;
+      display: grid;
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(31, 42, 55, 0.08);
+      border: 1px solid rgba(27, 108, 168, 0.1);
+    }
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+    }
+    .btn {
+      display: inline-block;
+      text-align: center;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(27, 108, 168, 0.2);
+      text-decoration: none;
+      color: var(--ink);
+      background: #f8fafc;
+    }
+    .btn.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .viewer {
+      width: 100%;
+      height: min(70vh, 720px);
+      border: 1px solid rgba(27, 108, 168, 0.2);
+      border-radius: 12px;
+    }
+    .muted { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">عرض الكتاب</h1>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="actions">
+        <a id="download" class="btn primary" href="#">تحميل الكتاب</a>
+        <a id="share" class="btn" href="#">مشاركة الكتاب</a>
+        <a class="btn" href="index.html">العودة للرئيسية</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <p class="muted" id="filename">الملف: —</p>
+      <iframe id="viewerFrame" class="viewer" title="معاينة PDF"></iframe>
+      <p class="muted" id="previewError" style="display:none;">لا يمكن عرض المعاينة هنا. جرّب فتح الملف في تبويب جديد.</p>
+      <a id="openNew" class="btn" href="#" target="_blank" rel="noopener" style="display:none;">فتح في تبويب جديد</a>
+    </section>
+  </main>
+
+  <script>
+    function getParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name) || "";
+    }
+
+    const file = getParam("file");
+    const label = getParam("label") || "كتاب";
+
+    const title = document.getElementById("title");
+    const filename = document.getElementById("filename");
+    const openNew = document.getElementById("openNew");
+    const previewError = document.getElementById("previewError");
+    const viewerFrame = document.getElementById("viewerFrame");
+    const download = document.getElementById("download");
+    const share = document.getElementById("share");
+
+    if (file) {
+      title.textContent = label;
+      filename.textContent = "الملف: " + file;
+      openNew.href = file;
+      download.href = "download.html?file=" + encodeURIComponent(file);
+      share.href = "share.html?file=" + encodeURIComponent(file) + "&label=" + encodeURIComponent(label);
+
+      viewerFrame.src = file;
+      viewerFrame.addEventListener("error", function () {
+        previewError.style.display = "block";
+        openNew.style.display = "inline-block";
+      });
+    } else {
+      title.textContent = "لم يتم اختيار ملف";
+      filename.textContent = "الملف: غير متوفر";
+      viewerFrame.style.display = "none";
+      download.classList.add("disabled");
+      share.classList.add("disabled");
+    }
+  </script>
+</body>
+</html>
